@@ -1,28 +1,47 @@
 #include <iostream>
 using namespace std;
 
-int strlen(char *s)
+//当字符串t出现在字符串s的尾部返回1，否则返回0.做点改编即可 
+int strend(char *s,char *t)
 {
-    int n;
-    for(n=0;*s!='\0';s++)
-        n++;
-    return n;
+    int i,j;
+    i=j=0;
+    while(*s)
+	{
+        i++;
+        s++;
+    }
+    while(*t)
+	{
+        j++;
+        t++;
+    }
+    if(j<=i)
+	{
+        while((*s--==*t--)&&j>=0)
+		{
+            j--;
+        }
+        return (j>0)? 0:1;
+    }
+    else
+        return 0;
 }
 int main()
 {
-    int i;
-    char a,b[100];
-    char *c;
-    a='a';
-    for(i=0;i<99;++i)
-    {
-    	b[i]='a';
-	}
-    b[99]='\0';
-    c=&a;
-    cout <<"l1:"<<strlen("hello,world")<<endl;
-    cout <<"l2:"<<strlen(b)<<endl;
-    cout <<"l3:"<<strlen(c)<<endl;
+	int a;
+    char s[100],t[100];
+    s[0]='a';
+    s[1]='b';
+    s[2]='c';
+    s[3]='\0';
+    t[0]='d';
+    t[1]='e';
+    t[2]='f';
+    t[3]='\0';
+    cout <<s<<" "<<t<<endl;
+    a=strend(s,t);
+    cout <<a<<endl;
 }
 
 
